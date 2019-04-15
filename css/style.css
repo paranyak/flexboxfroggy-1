@@ -34,11 +34,10 @@ body {
 }
 
 #sidebar {
-  width: 50%;
+  width: 60%;
   min-width: 300px;
-  position: relative;
-  padding: 2em;
-  background-color: #43A047;
+  padding: 40px;
+  background-color: #851a5e;
   font-size: 15px;
 }
 
@@ -179,8 +178,8 @@ a:hover {
 #instructions,
 #instructions p,
 #instructions ul {
-	/* helps prevent the difficulty animation from jumping */
-	margin: 0;
+  /* helps prevent the difficulty animation from jumping */
+  margin: 0;
   padding-bottom: 1em;
 }
 
@@ -433,14 +432,13 @@ button:not(.disabled):hover {
   color: rgba(255, 255, 255, 0.8);
 }
 
-#board {
-  position: relative;
-  width: 50vw;
-  height: 50vw;
+#view{
+  width: 40%;
   min-width: 300px;
-  min-height: 300px;
-  overflow: hidden;
+  background-color: #2c3e50;
+  height: 100vh;
 }
+
 
 #pond,
 #background {
@@ -510,6 +508,19 @@ button:not(.disabled):hover {
 
 .frog .bg {
   background-size: 60% 60%;
+}
+
+.rocket .bg {
+  background-image: url("../images/rocket.svg");
+  width: 100px;
+  height: 100px;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.rocket{
+  height: 100px;
 }
 
 .lilypad.green .bg {
@@ -619,3 +630,20 @@ button:not(.disabled):hover {
   line-height: 1;
 }
 
+#sortable {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+#sortable li {
+  margin: 0 5px 5px 5px;
+  padding: 5px;
+  font-size: 18px;
+  line-height: 20px;
+  min-height: 30px;
+}
+.ui-state-highlight {
+  line-height: 20px;
+  height: 30px;
+}

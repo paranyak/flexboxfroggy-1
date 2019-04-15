@@ -40,16 +40,18 @@ var game = {
 
       if ($(this).hasClass('disabled')) {
         if (!$('.frog').hasClass('animated')) {
+          console.log('try again')
           game.tryagain();
         }
 
         return;
       }
 
-      $('.frog').addClass('animated bounceOutUp');
+      //todo: hz $('.frog').addClass('animated bounceOutUp');
       $('.arrow, #next').addClass('disabled');
 
       setTimeout(function() {
+        console.log(game.level , levels.length - 1)
         if (game.level >= levels.length - 1) {
           game.win();
         } else {
@@ -58,36 +60,6 @@ var game = {
       }, 2000);
     });
 
-    $('#code').on('keydown', function(e) {
-      if (e.keyCode === 13) {
-
-        if (e.ctrlKey || e.metaKey) {
-          e.preventDefault();
-          game.check();
-          $('#next').click();
-          return;
-        }
-
-        var max = $(this).data('lines');
-        var code = $(this).val();
-        var trim = code.trim();
-        var codeLength = code.split('\n').length;
-        var trimLength = trim.split('\n').length;
-
-        if (codeLength >= max) {
-
-          if (codeLength === trimLength) {
-            e.preventDefault();
-            $('#next').click();
-          } else {
-            $('#code').focus().val('').val(trim);
-          }
-        }
-      }
-    }).on('input', game.debounce(game.check, 500))
-    .on('input', function() {
-      game.changed = true;
-    });
 
     $('#editor').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
       $(this).removeClass();
@@ -179,6 +151,7 @@ var game = {
   },
 
   next: function() {
+    console.log('next')
     if (this.difficulty === "hard") {
       this.level = Math.floor(Math.random()* levels.length)
     } else {
@@ -232,6 +205,14 @@ var game = {
     });
   },
 
+  shuffle: function (a) {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  },
+
   loadLevel: function(level) {
     $('#editor').show();
     $('#share').hide();
@@ -242,6 +223,19 @@ var game = {
     $('#before').text(level.before);
     $('#after').text(level.after);
     $('#next').addClass('disabled');
+
+    //todo: load line numbers
+    console.log('load level')
+    $('#sortable').empty()
+    const shuffledArr = game.shuffle(Object.keys(level.task))
+    for(let i = 0; i < shuffledArr.length; i++){
+      console.log('here')
+      const newLi = document.createElement("li");
+      $(newLi).attr('id', shuffledArr[i]);
+      $(newLi).attr('class', 'ui-state-default');
+     $( newLi).html( level.task[shuffledArr[i]] );
+      $('#sortable').append(newLi);
+    }
 
     var instructions = level.instructions[game.language] || level.instructions.en;
     $('#instructions').html(instructions);
@@ -264,27 +258,11 @@ var game = {
     var lines = Object.keys(level.style).length;
     $('#code').height(20 * lines).data("lines", lines);
 
-    var string = level.board;
-    var markup = '';
-    var colors = {
-      'g': 'green',
-      'r': 'red',
-      'y': 'yellow'
-    };
 
-    for (var i = 0; i < string.length; i++) {
-      var c = string.charAt(i);
-      var color = colors[c];
+      const rocket = $('<div/>').addClass('rocket');
+      $('<div/>').addClass('bg animated pulse infinite').appendTo(rocket);
+      $('#view').append(rocket);
 
-      var lilypad = $('<div/>').addClass('lilypad ' + color + (this.colorblind == 'true' ? ' cb-friendly' : '')).data('color', color);
-      var frog = $('<div/>').addClass('frog ' + color + (this.colorblind == 'true' ? ' cb-friendly' : '')).data('color', color);
-
-      $('<div/>').addClass('bg').css(game.transform()).appendTo(lilypad);
-      $('<div/>').addClass('bg animated pulse infinite').appendTo(frog);
-
-      $('#background').append(lilypad);
-      $('#pond').append(frog);
-    }
 
     var classes = level.classes;
 
@@ -323,6 +301,7 @@ var game = {
     });
   },
 
+  //todo: remove
   applyStyles: function() {
     var level = levels[game.level];
     var code = $('#code').val();
@@ -332,35 +311,19 @@ var game = {
   },
 
   check: function() {
-    game.applyStyles();
+   // game.applyStyles();
 
-    var level = levels[game.level];
-    var lilypads = {};
-    var frogs = {};
-    var correct = true;
-
-    $('.frog').each(function() {
-      var position = $(this).position();
-      position.top = Math.floor(position.top);
-      position.left = Math.floor(position.left);
-
-      var key = JSON.stringify(position);
-      var val = $(this).data('color');
-      frogs[key] = val;
-    });
-
-    $('.lilypad').each(function() {
-      var position = $(this).position();
-      position.top = Math.floor(position.top);
-      position.left = Math.floor(position.left);
-
-      var key = JSON.stringify(position);
-      var val = $(this).data('color');
-
-      if (!(key in frogs) || frogs[key] !== val) {
-        correct = false;
+    console.log('game check')
+    const sortedIDs = $( "#sortable" ).sortable( "toArray" );
+    const level = levels[game.level];
+    let correct = true;
+    const answers = Object.keys(level.task);
+    for(let i = 0; i < answers.length; i++){
+      if(answers[i] !== sortedIDs[i]){
+        correct = false
       }
-    });
+    }
+
 
     if (correct) {
       ga('send', {
@@ -398,6 +361,7 @@ var game = {
   },
 
   win: function() {
+    console.log('WIN!')
     var solution = $('#code').val();
 
     this.loadLevel(levelWin);
