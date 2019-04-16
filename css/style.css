@@ -523,6 +523,22 @@ button:not(.disabled):hover {
   height: 100px;
 }
 
+.planets .bg {
+  background-image: url("../images/planets.svg");
+  width: 150px;
+  height: 150px;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.planets{
+  height: 150px;
+  position: absolute;
+  bottom: 48px;
+  right: 33px;
+}
+
 .lilypad.green .bg {
   background-image: url("../images/lilypad-green.svg");
 }

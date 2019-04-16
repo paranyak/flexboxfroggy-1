@@ -258,7 +258,7 @@ var game = {
     var lines = Object.keys(level.style).length;
     $('#code').height(20 * lines).data("lines", lines);
 
-
+      $('#view').empty();
       const rocket = $('<div/>').addClass('rocket');
       $('<div/>').addClass('bg animated pulse infinite').appendTo(rocket);
       $('#view').append(rocket);
@@ -326,6 +326,10 @@ var game = {
 
 
     if (correct) {
+      const planets = $('<div/>').addClass('planets');
+      $('<div/>').addClass('bg animated pulse infinite').appendTo(planets);
+      $('#view').append(planets);
+
       ga('send', {
         hitType: 'event',
         eventCategory: level.name,
