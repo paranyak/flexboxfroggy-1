@@ -520,8 +520,127 @@ button:not(.disabled):hover {
 }
 
 .rocket{
-  height: 100px;
+  height: 100%;
+  /*animation: xAxis 2.5s  cubic-bezier(0.02, 0.01, 0.21, 1);*/
 }
+
+#rocket{
+  position: relative;
+  -webkit-animation-name: tada;
+  animation-name: tada;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-iteration-count: 2;
+}
+
+
+@-webkit-keyframes tada {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  10%, 20% {
+    -webkit-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+  }
+  30%, 50%, 70%, 90% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+  40%, 60%, 80% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes tada {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  10%, 20% {
+    -webkit-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+  }
+  30%, 50%, 70%, 90% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+  40%, 60%, 80% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+
+/*@keyframes yAxis {*/
+  /*!*70% {*!*/
+    /*!*animation-timing-function: cubic-bezier(0.02, 0.01, 0.21, 1);*!*/
+    /*!*transform: translateY(100px);*!*/
+  /*!*}*!*/
+  /*0% {*/
+    /*top: 0;*/
+    /*left: 0;*/
+  /*}*/
+  /*20% {*/
+    /*top: 50px;*/
+    /*left: 300px;*/
+    /*animation-duration: 1.5s;*/
+    /*animation-timing-function: cubic-bezier(0, 0, 0.2, 1);*/
+    /*transform: rotate(100deg);*/
+  /*}*/
+  /*40% {*/
+    /*top: 100px;*/
+    /*left: 0;*/
+    /*animation-duration: 1.5s;*/
+    /*animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);*/
+    /*transform: rotate(250deg);*/
+    /*transform-origin: bottom;*/
+    /*transition-duration: 1s;*/
+  /*}*/
+  /*50%{*/
+    /*top: 150px;*/
+    /*animation-timing-function: ease;*/
+  /*}*/
+  /*60% {*/
+    /*top: 200px;*/
+    /*left: 300px;*/
+    /*animation-duration: 13s;*/
+    /*animation-timing-function: cubic-bezier(0, 0, 0.2, 1);*/
+    /*transform: rotate(-10deg);*/
+    /*transform-origin: top;*/
+    /*transition-duration:1s;*/
+  /*}*/
+  /*80% {*/
+    /*top: 300px;*/
+    /*left: 0;*/
+  /*}*/
+
+  /*100% {*/
+    /*top: 500px;*/
+    /*left: 300px;*/
+  /*}*/
+/*}*/
+
+/*@keyframes xAxis {*/
+  /*50% {*/
+    /*animation-timing-function: cubic-bezier(0.3, 0.27, 0.07, 1.64);*/
+    /*transform: translateX(-50px);*/
+  /*}*/
+  /*75% {*/
+    /*animation-timing-function: cubic-bezier(0.3, 0.27, 0.07, 1.64);*/
+    /*transform: translateX(-150px);*/
+  /*}*/
+/*}*/
 
 .planets .bg {
   background-image: url("../images/planets.svg");

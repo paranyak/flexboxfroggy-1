@@ -258,11 +258,10 @@ var game = {
     var lines = Object.keys(level.style).length;
     $('#code').height(20 * lines).data("lines", lines);
 
-      $('#view').empty();
-      const rocket = $('<div/>').addClass('rocket');
-      $('<div/>').addClass('bg animated pulse infinite').appendTo(rocket);
-      $('#view').append(rocket);
-
+    $('#view').empty();
+    const rocket = $('<div/>').addClass('rocket');
+    $('<div/>').addClass('bg animated pulse infinite').attr('id', 'rocket').appendTo(rocket);
+    $('#view').append(rocket);
 
     var classes = level.classes;
 
@@ -300,6 +299,7 @@ var game = {
       }
     });
   },
+
 
   //todo: remove
   applyStyles: function() {
