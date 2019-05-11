@@ -196,9 +196,8 @@ pre {
 }
 
 #css {
-  height: 260px;
   position: relative;
-  padding: 10px 10px 10px 40px;
+  padding: 10px 10px 74px 40px;
   background-color: #ddd;
   border-radius: 4px;
   overflow: hidden;
@@ -209,10 +208,11 @@ pre {
   top: 0;
   left: 0;
   height: 100%;
-  padding: 10px 6px;
+  padding: 6px 6px;
   text-align: right;
   background-color: #999;
   color: #D5D5D5;
+  font-size: 25px;
 }
 
 #code {
@@ -521,11 +521,13 @@ button:not(.disabled):hover {
 
 .rocket{
   height: 100%;
-  /*animation: xAxis 2.5s  cubic-bezier(0.02, 0.01, 0.21, 1);*/
 }
 
 #rocket{
   position: relative;
+}
+
+.tada-success{
   -webkit-animation-name: tada;
   animation-name: tada;
   -webkit-animation-duration: 1s;
@@ -534,7 +536,6 @@ button:not(.disabled):hover {
   animation-fill-mode: both;
   animation-iteration-count: 2;
 }
-
 
 @-webkit-keyframes tada {
   0% {
@@ -781,4 +782,48 @@ button:not(.disabled):hover {
 .ui-state-highlight {
   line-height: 20px;
   height: 30px;
+}
+
+
+div#form1{
+  width:250px;
+  height:430px;
+  border:2px solid #a5a5a5;
+  padding:20px;
+  background-color:#f3f3f3;
+  border-radius:3px;
+  float:left;
+  text-align:center;
+  margin-left:100px;
+  margin-top:50px
+}
+
+input{
+  width:100%;
+  margin:10px 0;
+  padding:5px;
+  height:35px;
+  box-shadow:1px 1px 1px 1px gray;
+  border-radius:3px
+}
+input#submit{
+  width:100%;
+  margin:10px 15px 10px 0;
+  padding:5px;
+  background-color:#3fb8e8;
+  box-shadow:0 3px 0 0 #3293ba;
+  border-radius:3px;
+  color:#fff;
+  height:41px;
+  font-size:16px
+}
+textarea{
+  margin:10px 0;
+  padding:5px;
+  box-shadow:1px 1px 1px 1px gray;
+  border-radius:3px
+}
+div#container{
+  margin:50px auto;
+  width:960px
 }

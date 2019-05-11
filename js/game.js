@@ -312,7 +312,6 @@ var game = {
 
   check: function() {
    // game.applyStyles();
-
     console.log('game check')
     const sortedIDs = $( "#sortable" ).sortable( "toArray" );
     const level = levels[game.level];
@@ -326,10 +325,11 @@ var game = {
 
 
     if (correct) {
+// todo:       createForm();
+      $('#rocket').addClass('tada-success')
       const planets = $('<div/>').addClass('planets');
       $('<div/>').addClass('bg animated pulse infinite').appendTo(planets);
       $('#view').append(planets);
-
       ga('send', {
         hitType: 'event',
         eventCategory: level.name,
