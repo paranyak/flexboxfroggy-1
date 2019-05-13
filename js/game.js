@@ -110,7 +110,6 @@ var game = {
     },
 
     next: function () {
-        console.log('next')
         if (this.difficulty === "hard") {
             this.level = Math.floor(Math.random() * levels.length)
         } else {
@@ -121,6 +120,29 @@ var game = {
         this.loadLevel(levelData);
     },
 
+    forLoopAdvanced: function () {
+        $('#rocket').addClass('rocket-forLoopAdvanced');
+        $('#view').append(
+            $('<span class="abs" id="number">5</span>'),
+        );
+        const timeFunc = setInterval(function () {
+            let number = $('#number').text();
+            if (parseInt(number, 10) < 8) {
+                let newNumber = 1 + parseInt($('#number').text(), 10);
+                $('#number').text(newNumber)
+            } else {
+                clearInterval(timeFunc);
+            }
+        }, 4000);
+    },
+
+    forLoopSimple: function () {
+        //add 3 planets
+        $('#rocket').addClass('rocket-forLoopSimple');
+        setTimeout(() => {
+            $('#rocket').removeClass('rocket-forLoopSimple');
+        }, 1000)
+    },
     loadMenu: function () {
         levels.forEach(function (level, i) {
             var levelMarker = $('<span/>').addClass('level-marker').attr('data-level', i).text(i + 1);
@@ -222,14 +244,6 @@ var game = {
         console.log(rocket)
         $('#view').append(rocket);
 
-        var classes = level.classes;
-
-        if (classes) {
-            for (var rule in classes) {
-                $(rule).addClass(classes[rule]);
-            }
-        }
-
         game.changed = false;
         game.check();
     },
@@ -273,16 +287,6 @@ var game = {
 
 
         if (correct) {
-            $("#form1").append(
-                $("<iframe/>", {
-                    src: "https://docs.google.com/forms/d/e/1FAIpQLScnar6J4g18NZTpTbtM7_nBvNsndHDD6u9ZwCGIEhAU4QAqCg/viewform?embedded=true",
-                    width: "640",
-                    height: "1983",
-                    frameborder: "0",
-                    marginheight: "0",
-                    marginwidth: "0"
-                }));
-            $('#rocket').addClass('tada-success')
             const planets = $('<div/>').addClass('planets');
             $('<div/>').addClass('bg animated pulse infinite').appendTo(planets);
             $('#view').append(planets);
@@ -293,6 +297,8 @@ var game = {
 
             $('[data-level=' + game.level + ']').addClass('solved');
             $('#next').removeClass('disabled');
+            //here: game.forLoopAdvanced();
+            game.forLoopSimple();
         } else {
 
             $('#next').addClass('disabled');
@@ -309,15 +315,23 @@ var game = {
     },
 
     win: function () {
-        console.log('WIN!')
         var solution = $('#code').val();
 
-        this.loadLevel(levelWin);
+        //this.loadLevel(levelWin);
 
         $('#editor').hide();
+        $('#view').hide();
+        $("#form1").append(
+            $("<iframe/>", {
+                src: "https://docs.google.com/forms/d/e/1FAIpQLScnar6J4g18NZTpTbtM7_nBvNsndHDD6u9ZwCGIEhAU4QAqCg/viewform?embedded=true",
+                width: "640",
+                height: "1983",
+                frameborder: "0",
+                marginheight: "0",
+                marginwidth: "0"
+            }));
+
         $('#code').val(solution);
-        $('#share').show();
-        $('.frog .bg').removeClass('pulse').addClass('bounce');
     },
 
     transform: function () {
