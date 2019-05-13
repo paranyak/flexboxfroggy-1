@@ -1,3 +1,7 @@
+var ROCKET_SIMPLE = 'rocket'
+var ROCKET_PINK = 'rocket-pink'
+var ROCKET_DARK = 'rocket-dark'
+
 var levels = [
     {
         name: 'print-simple',
@@ -21,6 +25,7 @@ var levels = [
         instructions: {
             'uk': '<p>Привіт! А чи зможеш ти зробити так, щоб програма вивела кожне ім\'я зі списку?</p>'
         },
+        rockets: [ROCKET_SIMPLE, ROCKET_PINK, ROCKET_DARK],
     },
     {
         name: 'foor-loop-advanged',

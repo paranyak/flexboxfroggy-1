@@ -136,13 +136,16 @@ var game = {
         }, 4000);
     },
 
-    forLoopSimple: function () {
+    forLoopSimple: function (level) {
         //add 3 planets
-        $('#rocket').addClass('rocket-forLoopSimple');
-        setTimeout(() => {
-            $('#rocket').removeClass('rocket-forLoopSimple');
-        }, 1000)
+        for (let i = 0; i < level.rockets.length; i++) {
+            $('#' + level.rockets[i]).addClass('rocket-forLoopSimple');
+            setTimeout(() => {
+                $('#' + level.rockets[i]).removeClass('rocket-forLoopSimple');
+            }, 1000)
+        }
     },
+
     loadMenu: function () {
         levels.forEach(function (level, i) {
             var levelMarker = $('<span/>').addClass('level-marker').attr('data-level', i).text(i + 1);
@@ -239,10 +242,20 @@ var game = {
         this.loadDocs();
 
         $('#view').empty();
-        const rocket = $('<div/>').addClass('rocket');
-        $('<div/>').addClass('bg animated pulse infinite').attr('id', 'rocket').appendTo(rocket);
-        console.log(rocket)
-        $('#view').append(rocket);
+        if (level.rockets) {
+            for (let i = 0; i < level.rockets.length; i++) {
+                let rocket = $('<div/>').addClass('rocket ' + level.rockets[i]);
+                $('<div/>').addClass('bg animated pulse infinite').attr('id', level.rockets[i]).appendTo(rocket);
+                console.log(rocket)
+                $('#view').append(rocket);
+            }
+            $('#view').addClass('mult-rocket')
+        } else {
+            const rocket = $('<div/>').addClass('rocket');
+            $('<div/>').addClass('bg animated pulse infinite').attr('id', 'rocket').appendTo(rocket);
+            console.log(rocket)
+            $('#view').append(rocket);
+        }
 
         game.changed = false;
         game.check();
@@ -298,7 +311,7 @@ var game = {
             $('[data-level=' + game.level + ']').addClass('solved');
             $('#next').removeClass('disabled');
             //here: game.forLoopAdvanced();
-            game.forLoopSimple();
+            game.forLoopSimple(level);
         } else {
 
             $('#next').addClass('disabled');

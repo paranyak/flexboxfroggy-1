@@ -521,12 +521,23 @@ button:not(.disabled):hover {
     background-size: contain;
     background-repeat: no-repeat;
 }
+.rocket-pink .bg{
+    margin-top: 20px;
+    background-image: url("../images/rocket-pink.svg") !important;
+}
+.rocket-dark .bg{
+    margin-top: 20px;
+    background-image: url("../images/rocket-dark.svg") !important;
+}
 
 .rocket {
     height: 100%;
 }
 
-#rocket {
+.mult-rocket .rocket{
+    height: auto;
+}
+#rocket, #rocket-pink, #rocket-dark {
     position: relative;
 }
 
