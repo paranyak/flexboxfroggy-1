@@ -18,7 +18,7 @@ var levels = [
     {
         name: 'for-loop-simple',
         task: {
-            'id-0': 'names = [\'Аня\', \'Вадим\', \'Тарас\', \'Оля\']',
+            'id-0': 'names = [\'Аня\', \'Вадим\', \'Тарас\']',
             'id-1': 'for name in names: ',
             'id-2': '   print(name)',
         },

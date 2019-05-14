@@ -137,12 +137,16 @@ var game = {
     },
 
     forLoopSimple: function (level) {
-        //add 3 planets
         for (let i = 0; i < level.rockets.length; i++) {
-            $('#' + level.rockets[i]).addClass('rocket-forLoopSimple');
+            let currentRocket = $('#' + level.rockets[i])
+            currentRocket.css('visibility', 'hidden');
             setTimeout(() => {
-                $('#' + level.rockets[i]).removeClass('rocket-forLoopSimple');
-            }, 1000)
+                currentRocket.css('visibility', 'initial');
+                currentRocket.addClass('rocket-forLoopSimple');
+            }, (i+1) * 1000)
+            setTimeout(() => {
+                currentRocket.removeClass('rocket-forLoopSimple');
+            }, (i+1) * 1000 + 1000)
         }
     },
 
