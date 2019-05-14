@@ -156,7 +156,7 @@ var game = {
         );
     },
 
-    iElse: function (level) {
+    ifElse: function (level) {
         Object.keys(level.rockets).map((key, i) => {
             let currentRocket = $('#' + key);
             let currentType;
@@ -263,7 +263,7 @@ var game = {
         for (let i = 0; i < shuffledArr.length; i++) {
             const newLi = document.createElement("li");
             $(newLi).attr('id', shuffledArr[i]);
-            $(newLi).attr('class', 'ui-state-default');
+            $(newLi).attr('class', 'ui-state-default grab');
             console.log(level.task[shuffledArr[i]])
             $(newLi).text(level.task[shuffledArr[i]]);
             $('#sortable').append(newLi);
