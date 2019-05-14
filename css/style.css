@@ -173,11 +173,12 @@ a:hover {
 }
 
 #instructions {
-    padding-top: 10px;
     font-size: 16px;
+    background-color: rgba(44,114,163,0.5);
+    padding: 10px;
+    margin: 10px auto;
 }
 
-#instructions,
 #instructions p,
 #instructions ul {
     /* helps prevent the difficulty animation from jumping */

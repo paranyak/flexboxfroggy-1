@@ -89,7 +89,7 @@ var messages = {
     'hu': 'A Flexbox Froggy-t készítette',
     'eo': 'Flexbox Froggy far',
     'sv': 'Flexbox Froggy skapades av',
-    'uk': 'Гру Flexbox Froggy створено',
+    'uk': 'Space Lab створено на основі',
     'hi': 'Flexbox Froggy के निर्माणकर्ता ',
     'nl': 'Flexbox Froggy is gemaakt door',
     'ta': 'Flexbox Froggy உருவாக்கியவர்',
