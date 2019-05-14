@@ -31,8 +31,6 @@ body {
     background: url("https://cdn.dribbble.com/users/187401/screenshots/3504824/space_illustration.jpg");
     color: rgba(255, 255, 255, 0.7);
     font-family: 'PT Sans', sans-serif;
-    -webkit-background-size: cover;
-    background-size: cover;
 }
 
 #sidebar {

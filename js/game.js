@@ -391,7 +391,6 @@ var game = {
                 marginwidth: "0",
             }));
         $('#sidebar').css('width', '100%');
-        $('body').css('background-size', 'initial');
     },
 
     transform: function () {
