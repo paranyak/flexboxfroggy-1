@@ -156,31 +156,37 @@ var game = {
         );
     },
 
-    iElseFirst: function (level) {
+    iElse: function (level) {
         Object.keys(level.rockets).map((key, i) => {
             let currentRocket = $('#' + key);
-            let currentType =  i ? $('<img src="./images/correct.svg" class="entry-img"/>') :
-                $('<img src="./images/no-entry.svg" class="entry-img"/>')
+            let currentType;
+            switch (i) {
+                case 1 :
+                    currentType = $('<img src="./images/correct.svg" class="entry-img"/>');
+                    break;
+                case 2:
+                    currentType = $('<img src="./images/exclamation.svg" class="entry-img"/>');
+                    break;
+                case 0:
+                    currentType = $('<img src="./images/no-entry.svg" class="entry-img"/>');
+                    break;
+                default:
+                    currentType = $('<img src="./images/no-entry.svg" class="entry-img"/>');
+            }
+
             currentRocket.append(
-               currentType.attr('id', 'entry-'+ key)
+                currentType.attr('id', 'entry-' + key)
             );
             let rocketEntry = $('#entry-' + key);
-            rocketEntry.css('visibility', 'hidden')
-            console.log(rocketEntry)
+            rocketEntry.css('visibility', 'hidden');
             setTimeout(() => {
                 rocketEntry.css('visibility', 'initial');
                 rocketEntry.addClass('rocket-forLoopSimple-animation');
-            }, (i) * 700)
+            }, (i) * 700);
             setTimeout(() => {
                 rocketEntry.removeClass('rocket-forLoopSimple-animation');
             }, (i) * 700 + 1000)
         })
-    },
-
-    iElseSecond: function () {
-        $('#view').append(
-            $('<div class="rocket-printSimple-text" id="rocket-printSimple"> Привіт, тепер у мене є ім\'я</div>'),
-        );
     },
 
     loadMenu: function () {

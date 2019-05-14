@@ -53,7 +53,7 @@ var levels = [
             'uk': '<p>Привіт! А чи зможеш ти зробити так, щоб програма запитала у тебе твій вік?  А потім перевірила, чи є число додатним чи від\'ємним</p>',
         },
         rockets: {[ROCKET_SIMPLE]: '', [ROCKET_PINK]: ''},
-        animation: 'iElseFirst',
+        animation: 'iElse',
     },
     {
         name: 'if-else-2',
@@ -69,7 +69,8 @@ var levels = [
         instructions: {
             'uk': '<p>Привіт! А чи зможеш ти зробити так, щоб програма запитала у тебе твій вік? А потім перевірила, кому відповідає твій вік : Дитині, підлітку чи дорослому.</p>',
         },
-        animation: 'iElseSecond',
+        rockets: {[ROCKET_SIMPLE]: '', [ROCKET_PINK]: '', [ROCKET_DARK]: '',},
+        animation: 'iElse',
     },
 ];
 
