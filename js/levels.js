@@ -13,7 +13,7 @@ var levels = [
         instructions: {
             'uk': '<p>Привіт! А чи зможеш ти зробити так, щоб програма запитала у тебе твоє ім\'я?  Потім приствоїла це в змінну під назвою name . А потім вивела введені дані?</p>',
         },
-        animation: 'forLoopAdvanced',
+        animation: 'printSimple',
     },
     {
         name: 'for-loop-simple',
@@ -25,7 +25,8 @@ var levels = [
         instructions: {
             'uk': '<p>Привіт! А чи зможеш ти зробити так, щоб програма вивела кожне ім\'я зі списку?</p>'
         },
-        rockets: [ROCKET_SIMPLE, ROCKET_PINK, ROCKET_DARK],
+        animation: 'forLoopSimple',
+        rockets: {[ROCKET_SIMPLE]: 'Аня', [ROCKET_PINK]: 'Вадим', [ROCKET_DARK]: 'Тарас'},
     },
     {
         name: 'foor-loop-advanged',
@@ -34,6 +35,7 @@ var levels = [
             'id-1': '   print(i)',
             'id-2': 'print(\'Кінець програми!\')',
         },
+        animation: 'forLoopAdvanced',
         instructions: {
             'uk': '<p>Привіт! А чи зможеш ти зробити так, щоб програма вивела числа від 5 до 8 , а потім сказала, що програма закінчила виконання?</p>',
         },
@@ -50,6 +52,8 @@ var levels = [
         instructions: {
             'uk': '<p>Привіт! А чи зможеш ти зробити так, щоб програма запитала у тебе твій вік?  А потім перевірила, чи є число додатним чи від\'ємним</p>',
         },
+        rockets: {[ROCKET_SIMPLE]: '', [ROCKET_PINK]: ''},
+        animation: 'iElseFirst',
     },
     {
         name: 'if-else-2',
@@ -65,6 +69,7 @@ var levels = [
         instructions: {
             'uk': '<p>Привіт! А чи зможеш ти зробити так, щоб програма запитала у тебе твій вік? А потім перевірила, кому відповідає твій вік : Дитині, підлітку чи дорослому.</p>',
         },
+        animation: 'iElseSecond',
     },
 ];
 

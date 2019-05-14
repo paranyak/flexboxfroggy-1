@@ -121,7 +121,7 @@ var game = {
     },
 
     forLoopAdvanced: function () {
-        $('#rocket').addClass('rocket-forLoopAdvanced');
+        $('#rocket').addClass('rocket-forLoopAdvanced-animation');
         $('#view').append(
             $('<span class="abs" id="number">5</span>'),
         );
@@ -137,17 +137,50 @@ var game = {
     },
 
     forLoopSimple: function (level) {
-        for (let i = 0; i < level.rockets.length; i++) {
-            let currentRocket = $('#' + level.rockets[i])
+        Object.keys(level.rockets).map((key, i) => {
+            let currentRocket = $('#' + key)
             currentRocket.css('visibility', 'hidden');
             setTimeout(() => {
                 currentRocket.css('visibility', 'initial');
-                currentRocket.addClass('rocket-forLoopSimple');
-            }, (i+1) * 1000)
+                currentRocket.addClass('rocket-forLoopSimple-animation');
+            }, (i) * 1000)
             setTimeout(() => {
-                currentRocket.removeClass('rocket-forLoopSimple');
-            }, (i+1) * 1000 + 1000)
-        }
+                currentRocket.removeClass('rocket-forLoopSimple-animation');
+            }, (i) * 1000 + 1000)
+        })
+    },
+
+    printSimple: function () {
+        $('#view').append(
+            $('<div class="rocket-printSimple-text" id="rocket-printSimple"> Привіт, тепер у мене є ім\'я</div>'),
+        );
+    },
+
+    iElseFirst: function (level) {
+        Object.keys(level.rockets).map((key, i) => {
+            let currentRocket = $('#' + key);
+            let currentType =  i ? $('<img src="./images/correct.svg" class="entry-img"/>') :
+                $('<img src="./images/no-entry.svg" class="entry-img"/>')
+            currentRocket.append(
+               currentType.attr('id', 'entry-'+ key)
+            );
+            let rocketEntry = $('#entry-' + key);
+            rocketEntry.css('visibility', 'hidden')
+            console.log(rocketEntry)
+            setTimeout(() => {
+                rocketEntry.css('visibility', 'initial');
+                rocketEntry.addClass('rocket-forLoopSimple-animation');
+            }, (i) * 700)
+            setTimeout(() => {
+                rocketEntry.removeClass('rocket-forLoopSimple-animation');
+            }, (i) * 700 + 1000)
+        })
+    },
+
+    iElseSecond: function () {
+        $('#view').append(
+            $('<div class="rocket-printSimple-text" id="rocket-printSimple"> Привіт, тепер у мене є ім\'я</div>'),
+        );
     },
 
     loadMenu: function () {
@@ -217,7 +250,10 @@ var game = {
             )
         }
         $('#sortable').empty()
-        const shuffledArr = game.shuffle(Object.keys(level.task))
+        let shuffledArr = Object.keys(level.task)
+        while (JSON.stringify(shuffledArr) == JSON.stringify(Object.keys(level.task))) {
+            shuffledArr = game.shuffle(Object.keys(level.task))
+        }
         for (let i = 0; i < shuffledArr.length; i++) {
             const newLi = document.createElement("li");
             $(newLi).attr('id', shuffledArr[i]);
@@ -246,17 +282,22 @@ var game = {
         this.loadDocs();
 
         $('#view').empty();
+        $('#view').removeClass('mult-rocket')
         if (level.rockets) {
-            for (let i = 0; i < level.rockets.length; i++) {
-                let rocket = $('<div/>').addClass('rocket ' + level.rockets[i]);
-                $('<div/>').addClass('bg animated pulse infinite').attr('id', level.rockets[i]).appendTo(rocket);
+            Object.keys(level.rockets).map(key => {
+                let rocket = $('<div/>').addClass('rocket ' + key);
+                $('<div/>')
+                    .addClass('bg animated pulse infinite')
+                    .attr('id', key)
+                    .text(level.rockets[key])
+                    .appendTo(rocket);
                 console.log(rocket)
                 $('#view').append(rocket);
-            }
+            })
             $('#view').addClass('mult-rocket')
         } else {
             const rocket = $('<div/>').addClass('rocket');
-            $('<div/>').addClass('bg animated pulse infinite').attr('id', 'rocket').appendTo(rocket);
+            $('<div/>').addClass('bg animated pulse infinite ' + 'rocket-' + level.animation).attr('id', 'rocket').appendTo(rocket);
             console.log(rocket)
             $('#view').append(rocket);
         }
@@ -304,18 +345,13 @@ var game = {
 
 
         if (correct) {
-            const planets = $('<div/>').addClass('planets');
-            $('<div/>').addClass('bg animated pulse infinite').appendTo(planets);
-            $('#view').append(planets);
-
             if ($.inArray(level.name, game.solved) === -1) {
                 game.solved.push(level.name);
             }
 
             $('[data-level=' + game.level + ']').addClass('solved');
             $('#next').removeClass('disabled');
-            //here: game.forLoopAdvanced();
-            game.forLoopSimple(level);
+            game[level.animation](level)
         } else {
 
             $('#next').addClass('disabled');
