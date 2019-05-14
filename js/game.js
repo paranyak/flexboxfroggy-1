@@ -374,12 +374,13 @@ var game = {
     },
 
     win: function () {
-        var solution = $('#code').val();
-
-        //this.loadLevel(levelWin);
-
         $('#editor').hide();
         $('#view').hide();
+        $('#level-counter').hide();
+        $('#instructions').empty();
+        $('#instructions').append(
+            $('<p>Ура ми змогли допомогти запустити ракету на потрібну планету!</p><br/><br/><p>А тепер останнє маленьке проханнячко - допоможи нашій команді - заповни форму!</p>',),
+        )
         $("#form1").append(
             $("<iframe/>", {
                 src: "https://docs.google.com/forms/d/e/1FAIpQLScnar6J4g18NZTpTbtM7_nBvNsndHDD6u9ZwCGIEhAU4QAqCg/viewform?embedded=true",
@@ -387,10 +388,10 @@ var game = {
                 height: "1983",
                 frameborder: "0",
                 marginheight: "0",
-                marginwidth: "0"
+                marginwidth: "0",
             }));
-
-        $('#code').val(solution);
+        $('#sidebar').css('width', '100%');
+        $('body').css('background-size', 'initial');
     },
 
     transform: function () {
