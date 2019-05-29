@@ -127,11 +127,18 @@ var game = {
         );
         const timeFunc = setInterval(function () {
             let number = $('#number').text();
-            if (parseInt(number, 10) < 8) {
+            if (parseInt(number, 10) < 6) {
                 let newNumber = 1 + parseInt($('#number').text(), 10);
                 $('#number').text(newNumber)
             } else {
                 clearInterval(timeFunc);
+              $('#number').remove();
+              $('#view').append(
+                  $('<div class="rocket-printSimple-text" id="rocket-printSimple">Кінець програми</div>'),
+              );
+              $('#rocket').removeClass('rocket-forLoopAdvanced-animation infinite');
+              $('#rocket').addClass('rocket-printSimple-text');
+              $('#rocket').css('top', '35%')
             }
         }, 4000);
     },
