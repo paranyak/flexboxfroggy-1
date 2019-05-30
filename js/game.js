@@ -127,7 +127,7 @@ var game = {
         );
         const timeFunc = setInterval(function () {
             let number = $('#number').text();
-            if (parseInt(number, 10) < 6) {
+            if (parseInt(number, 10) < 7) {
                 let newNumber = 1 + parseInt($('#number').text(), 10);
                 $('#number').text(newNumber)
             } else {
